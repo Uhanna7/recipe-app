@@ -1,0 +1,12 @@
+query get_model($per_page: Int = 20, $page: Int = 1) {
+  models(
+    per_page: $per_page
+    page: $page
+    filter: { deleted_at: { exists: false } }
+  ) {
+    total_entries
+    results {
+      id
+    }
+  }
+}
