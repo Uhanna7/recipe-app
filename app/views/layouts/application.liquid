@@ -6,15 +6,29 @@
     <meta content="authenticity_token" name="csrf-param">
     <meta content="{{ form_authenticity_token }}" name="csrf-token">
 
-    <title>Hello world! | platformOS</title>
+    <title>Recipe App</title>
 
     <link rel="stylesheet" href="{{ 'styles/app.css' | asset_url }}">
   </head>
 
   <body>
 
-    {{ content_for_layout }}
+    <header>
+      <h1>Recipe App</h1>
+      <nav>
+        <a href="/index">Home</a>
+        <a href="/shopping-list">Shopping List</a>
+        <a href="/recipes/recipes">Recipes</a>
+      </nav>
+    </header>
 
+    <main>
+      {{ content_for_layout }}
+    </main>
+
+    <footer>
+      <p>&copy; 2023 Hanna's and Marcell's Website. All rights reserved.</p>
+    </footer>
 
     <script src="{{ 'scripts/app.js' | asset_url }}"></script>
 
