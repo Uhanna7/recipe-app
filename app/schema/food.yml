@@ -1,0 +1,17 @@
+name: food
+properties:
+  - name: name
+    type: string
+  - name: image
+    type: string
+  - name: recipe
+    type: string
+  - name: ingredients
+    type: array
+
+    # items:
+    #   type: object
+    #   properties:
+    #     - name: name
+    #       type: string
+
