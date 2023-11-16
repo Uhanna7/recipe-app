@@ -2,16 +2,9 @@ name: food
 properties:
   - name: name
     type: string
-  - name: image
+  - name: img_url
     type: string
   - name: recipe
     type: string
-  - name: ingredients
+  - name: ingredient_ids
     type: array
-
-    # items:
-    #   type: object
-    #   properties:
-    #     - name: name
-    #       type: string
-
