@@ -5,8 +5,35 @@
     type="text"
     id="recipe-search"
     placeholder="Search by recipe name">
-  <button onclick="">Search</button>
-{% comment %} <button onclick="">Add Recipe</button> {% endcomment %}
+  <button type="submit">Search</button>
+</form>
+
+<!-- form for adding new recipe -->
+<form
+  action="/recipe/create"
+  method="post"
+  id="form-container">
+  <input
+    type="text"
+    name="title"
+    id="recipe-search"
+    placeholder="Title">
+  <input
+    type="text"
+    name="image"
+    id="recipe-search"
+    placeholder="Image">
+  <input
+    type="text"
+    name="description"
+    id="recipe-search"
+    placeholder="Description">
+  <input
+    type="text"
+    name="ingredients"
+    id="recipe-search"
+    placeholder="Ingredients">
+  <button type="submit">Add Recipe</button>
 </form>
 
 
