@@ -7,7 +7,7 @@ query ingredient_search {
     total_entries
     results {
       id
-      title: property(name: "name")
+      name: property(name: "name")
     }
   }
 }

@@ -1,15 +1,15 @@
 <h2>Shopping List</h2>
 
 {% liquid
-  graphql items = 'item/search'
+  graphql items = 'ingredient/search'
 %}
 
 <!-- list of items -->
 <ul>
   {% for item in items.records.results %}
     <li>
-      {{ item.title }}
-      <form action="/item/delete" method="post">
+      {{ item.name }}
+      <form action="delete" method="post">
         <input
           type="hidden"
           name="id"
@@ -27,37 +27,37 @@
 
 <!-- form for adding new item -->
 <form
-  action="/item/create"
+  action="create"
   method="post"
   id="form-container">
   <input
     type="text"
-    name="title"
+    name="name"
     placeholder="Add ingredients here">
   <button type="submit">Add item</button>
 </form>
 
 {% comment %} <div id="shopping-container">
-  <ul>
-    <li>
-      Ingredient 1
-      <button type="submit">Mark as done</button>
-    </li>
-    <li>
-      Ingredient 2
-      <button type="submit">Mark as done</button>
-    </li>
-    <li>
-      Ingredient 3
-      <button type="submit">Mark as done</button>
-    </li>
-    <li>
-      Ingredient 4
-      <button type="submit">Mark as done</button>
-    </li>
-    <li>
-      Ingredient 5
-      <button type="submit">Mark as done</button>
-    </li>
-  </ul>
+    <ul>
+      <li>
+        Ingredient 1
+        <button type="submit">Mark as done</button>
+      </li>
+      <li>
+        Ingredient 2
+        <button type="submit">Mark as done</button>
+      </li>
+      <li>
+        Ingredient 3
+        <button type="submit">Mark as done</button>
+      </li>
+      <li>
+        Ingredient 4
+        <button type="submit">Mark as done</button>
+      </li>
+      <li>
+        Ingredient 5
+        <button type="submit">Mark as done</button>
+      </li>
+    </ul>
 </div> {% endcomment %}
