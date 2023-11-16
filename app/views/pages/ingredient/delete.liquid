@@ -1,0 +1,14 @@
+---
+method: post
+---
+
+{% liquid
+	graphql result = 'ingredient/delete', id: context.params.id
+
+	if result.record.id
+		redirect_to '/'
+	else
+		echo 'Something went wrong'
+		echo result.errors
+	endif
+%}

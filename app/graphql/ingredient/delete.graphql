@@ -1,0 +1,10 @@
+mutation ingredient_delete(
+  $id: ID!
+) {
+  record: record_delete(
+    table: "ingredient"
+    id: $id
+  ) {
+    id
+  }
+}
