@@ -1,8 +1,0 @@
-name: item
-properties:
-  - name: title
-    type: string
-  - name: quantity
-    type: integer
-  - name: unit
-    type: string
