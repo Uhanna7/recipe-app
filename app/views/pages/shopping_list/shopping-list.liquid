@@ -4,7 +4,7 @@
   graphql items = 'item/search'
 %}
 
-<!-- list of items -->
+<!-- List of ingredients -->
 <ul>
   {% for item in items.records.results %}
     <li>
@@ -20,12 +20,12 @@
   {% endfor %}
 </ul>
 
-<!-- information shown when the list is empty -->
+<!-- Error when the list is empty -->
 {% if items.records.total_entries == 0 %}
   <div>There are no items in the list.</div>
 {% endif %}
 
-<!-- form for adding new item -->
+<!-- Form for adding new item -->
 <form
   action="/item/create"
   method="post"
