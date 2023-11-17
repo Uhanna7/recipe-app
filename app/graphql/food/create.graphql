@@ -2,7 +2,7 @@ mutation food_create(
   $name: String,
   $img_url: String,
   $recipe: String,
-  $ingredient_ids: [ID!]
+  $ingredient_ids: [String]
 ) {
   record: record_create(
     record: {

@@ -1,4 +1,4 @@
-query ingredientID($name: String!) {
+query ingredientID($name: String) {
   records(
     per_page: 100,
     filter: {
