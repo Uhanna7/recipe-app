@@ -1,5 +1,9 @@
 <h2>Recipes</h2>
 
+{% liquid
+  graphql recipes = 'food/search'
+%}
+
 <!-- Search form -->
 <form id="form-container">
   <input
@@ -33,44 +37,28 @@
     type="text"
     name="ingredients"
     id="recipe-search"
-    placeholder="Ingredients">
+    placeholder="Ingredients: egg, bread ...">
   <button type="submit">Add Recipe</button>
 </form>
 
-
 <!-- Recipe cards -->
-<div id="recipes-container">
-  {% for recipe in recipes.data.results %}
-    <div class="recipe-card">
-      <img src="{{ recipe.img_url }}" alt="{{ recipe.name }}" class="recipe-image">
-      <div class="recipe-details">
-        <h3>{{ recipe.name }}</h3>
-        <a href="/view_dish/{{ recipe.id }}">Show More</a>
+<div class="flex-recipes-container">
+  {% for recipe in recipes.records.results %}
+    <div class="recipes-container">
+      <div class="recipe-card">
+        <img src={{ recipe.img_url }} alt={{ recipe.name }} class="recipe-image">
+        <div class="recipe-details">
+          <h3>{{ recipe.name }}</h3>
+          <a href="/../index">Show More</a>
+        </div>
       </div>
     </div>
   {% endfor %}
 </div>
 
-{% comment %} <div id="recipes-container">
-  <div class="recipe-card">
-    <img class="recipe-image">
-    <div class="recipe-details">
-      <h3>Title</h3>
-      <a href="/recipes/dish">Show More</a>
-    </div>
-  </div>
-  <div class="recipe-card">
-    <img class="recipe-image">
-    <div class="recipe-details">
-      <h3>Title</h3>
-      <a href="/recipes/dish">Show More</a>
-    </div>
-  </div>
-  <div class="recipe-card">
-    <img class="recipe-image">
-    <div class="recipe-details">
-      <h3>Title</h3>
-      <a href="/recipes/dish">Show More</a>
-    </div>
-  </div>
-</div> {% endcomment %}
+
+
+<!-- Error when the list is empty -->
+{% if recipes.records.total_entries == 0 %}
+  <div>There are no items in the list.</div>
+{% endif %}

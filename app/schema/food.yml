@@ -6,5 +6,5 @@ properties:
     type: string
   - name: recipe
     type: string
-  - name: ingredient_ids
+  - name: ingredients
     type: array

@@ -2,7 +2,7 @@ mutation food_create(
   $name: String,
   $img_url: String,
   $recipe: String,
-  $ingredient_ids: [String]
+  $ingredients: [String]
 ) {
   record: record_create(
     record: {
@@ -11,7 +11,7 @@ mutation food_create(
         { name: "name", value: $name },
         { name: "img_url", value: $img_url },
         { name: "recipe", value: $recipe },
-        { name: "ingredient_ids", value_array: $ingredient_ids }
+        { name: "ingredients", value_array: $ingredients }
       ]
     }
   ) {
@@ -19,6 +19,6 @@ mutation food_create(
     name: property(name: "name"),
     img_url: property(name: "img_url"),
     recipe: property(name: "recipe"),
-    ingredient_ids: property_array(name: "ingredient_ids")
+    ingredients: property_array(name: "ingredients")
   }
 }
