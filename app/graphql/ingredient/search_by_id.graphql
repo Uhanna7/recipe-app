@@ -1,0 +1,11 @@
+query ingredientID($id: ID!) {
+  records(
+    per_page: 100
+    filter: {table: {value: "ingredient"},  id: {value: $id}}
+  ) {
+    results {
+      name: property(name: "name")
+      id
+    }
+  }
+}

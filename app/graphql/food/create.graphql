@@ -1,0 +1,24 @@
+mutation food_create(
+  $name: String,
+  $img_url: String,
+  $recipe: String,
+  $ingredient_ids: [ID!]
+) {
+  record: record_create(
+    record: {
+      table: "food"
+      properties: [
+        { name: "name", value: $name },
+        { name: "img_url", value: $img_url },
+        { name: "recipe", value: $recipe },
+        { name: "ingredient_ids", value_array: $ingredient_ids }
+      ]
+    }
+  ) {
+    id
+    name: property(name: "name"),
+    img_url: property(name: "img_url"),
+    recipe: property(name: "recipe"),
+    ingredient_ids: property_array(name: "ingredient_ids")
+  }
+}
