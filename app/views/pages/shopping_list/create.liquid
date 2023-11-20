@@ -2,8 +2,24 @@
 method: post
 ---
 
+
+{% comment %} 
+  graphql res = 'ingredient/search_by_name', name: context.params.name  
+  assign ingredient_id = res.records.results[0].id 
+{% endcomment %}
+
 {% liquid
-  graphql result = 'ingredient/create', name: context.params.name
+  graphql current_id = 'ingredient/search_by_name', name: context.params.name
+
+  if current_id.records.total_entries == 0
+    graphql result_ingredient = 'ingredient/create', name: context.params.name
+  endif
+
+  graphql new_current_id = 'ingredient/search_by_name', name: context.params.name
+
+  graphql res = 'list_item/search_by_name', name: context.params.name
+
+  graphql result = 'list_item/create', ingredient: context.params.name 
 
   if result.record.id
     redirect_to 'shopping_list/shopping-list'

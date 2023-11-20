@@ -2,3 +2,5 @@ name: list-item
 properties:
   - name: ingredient
     type: string
+  # - name: ingredient_id
+  #   type: string

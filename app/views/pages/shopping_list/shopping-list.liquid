@@ -1,7 +1,7 @@
 <h2>Shopping List</h2>
 
 {% liquid
-  graphql items = 'ingredient/search'
+  graphql items = 'list_item/search'
 %}
 
 <!-- List of ingredients -->
@@ -9,7 +9,7 @@
   <ul>
     {% for item in items.records.results %}
       <li>
-        {{ item.name }}
+        {{ item.ingredient }}
         <form action="delete" method="post">
           <input
             type="hidden"

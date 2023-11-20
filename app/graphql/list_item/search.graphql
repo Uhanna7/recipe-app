@@ -1,0 +1,30 @@
+# query list_item {
+#   list_items: records(
+#     filter: {
+#       table: { value: "list-item" }
+#     },
+#     per_page: 100
+#   ) {
+#     total_entries
+#     results {
+#       ingredient: related_record(table: "ingredient", join_on_property: "ingredient_id") {
+#         id
+#         properties
+#       }
+#     }
+#   }
+# }
+
+query list_item_search {
+  records: records(
+    per_page: 100
+    filter: { table: { value: "list-item" } }
+    sort: { updated_at: { order: DESC } }
+  ) {
+    total_entries
+    results {
+      id
+      ingredient: property(name: "ingredient")
+    }
+  }
+}
