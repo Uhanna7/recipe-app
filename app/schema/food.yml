@@ -1,0 +1,10 @@
+name: food
+properties:
+  - name: name
+    type: string
+  - name: img_url
+    type: string
+  - name: recipe
+    type: string
+  - name: ingredients
+    type: array

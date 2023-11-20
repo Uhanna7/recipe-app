@@ -1,64 +1,40 @@
 <div class="dish-container">
 
-  <h2>Title</h2>
+  {% liquid
+    assign template = '/recipes/dish/id={id}'
+    assign params = context.location.pathname | extract_url_params: template
+    assign recipeId = params['id']
+
+    graphql recipe = 'food/search_by_id', id: recipeId
+  %}
+
+  <h2>{{ recipe.records.results[0].name }}</h2>
 
   <div class="dish-details">
     <img
-      src="{{ dish.data.records.img_url }}"
-      alt="{{ dish.data.records.name }}"
+      src="{{ recipe.records.results[0].img_url }}"
+      alt="{{ recipe.records.results[0].name }}"
       class="recipe-image">
-
-    <h3>{{ dish.data.records.name }}</h3>
 
     <h4>Ingredients:</h4>
 
     <div class="ingredients-container">
       <ul>
-        {% assign ingredients = dish.data.records.results %}
-        {% if ingredients.size > 0 %}
-          {% for ingredient in ingredients %}
-            <li>{{ ingredient.name }}</li>
-          {% endfor %}
-        {% else %}
-          <li>No ingredients available</li>
-        {% endif %}
+        {% for ingredient in recipe.records.results[0].ingredients %}
+          <li>
+            {{ ingredient }}
+          </li>
+        {% endfor %}
       </ul>
+      <button>Add ingredients to shopping list</button>
     </div>
 
     <h4>Recipe:</h4>
 
     <p>
-
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed cursus risus nec turpis fermentum, 
- 
- 
- 
- 
-      id ullamcorper urna tincidunt. Integer eget libero id turpis facilisis iaculis. Sed efficitur, 
-      ex in commodo aliquam, nulla justo fermentum augue.
+      {{ recipe.records.results[0].recipe }}
     </p>
-
-
-  {% comment %} <h4>Ingredients:</h4>
-        
-                    <div class="ingredients-container">
-                      <ul>
-                        <li>Ingredient 1</li>
-                        <li>Ingredient 2</li>
-                        <li>Ingredient 3</li>
-                      </ul>
-                      <button>Add ingredients to shopping list</button>
-                    </div>
-        
-                    <h4>Recipe:</h4>
-        
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed cursus risus nec turpis fermentum, 
-         
-         
-         
-                        id ullamcorper urna tincidunt. Integer eget libero id turpis facilisis iaculis. Sed efficitur, 
-                        ex in commodo aliquam, nulla justo fermentum augue.
-            </p> {% endcomment %}
   </div>
 </div>
+
+<a href="/recipes/recipes" class="back-button">Back</a>

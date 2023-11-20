@@ -1,0 +1,28 @@
+---
+method: post
+---
+
+{% assign names = context.params.ingredients | split: ", " %}
+
+{% for item in names %}
+  {% liquid
+    graphql current_id = 'ingredient/search_by_name', name: item
+
+    if current_id.records.total_entries == 0
+      graphql result_ingredient = 'ingredient/create', name: item
+    endif
+
+    graphql new_current_id = 'ingredient/search_by_name', name: item
+  %}
+{% endfor %}
+
+{% liquid
+  graphql result_food = 'food/create', name: context.params.name, img_url: context.params.image, recipe: context.params.description, ingredients: names
+
+  if result_food.record.id
+    redirect_to 'recipes/recipes'
+  else
+    echo 'Something went wrong'
+    echo result.errors
+  endif
+%}

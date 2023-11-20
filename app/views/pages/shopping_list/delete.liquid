@@ -3,10 +3,10 @@ method: post
 ---
 
 {% liquid
-  graphql result = 'item/delete', id: context.params.id
+  graphql result = 'ingredient/delete', id: context.params.id
 
   if result.record.id
-    redirect_to '/'
+    redirect_to 'shopping_list/shopping-list'
   else
     echo 'Something went wrong'
     echo result.errors
