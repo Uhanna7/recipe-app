@@ -20,7 +20,7 @@ method: post
   graphql result_food = 'food/create', name: context.params.name, img_url: context.params.image, recipe: context.params.description, ingredients: names
 
   if result_food.record.id
-    redirect_to '/'
+    redirect_to 'recipes/recipes'
   else
     echo 'Something went wrong'
     echo result.errors

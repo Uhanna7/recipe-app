@@ -6,7 +6,7 @@ method: post
   graphql result = 'ingredient/create', name: context.params.name
 
   if result.record.id
-    redirect_to '/'
+    redirect_to 'shopping_list/shopping-list'
   else
     echo 'Something went wrong'
     echo result.errors
