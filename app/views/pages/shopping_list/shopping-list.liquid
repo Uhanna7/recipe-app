@@ -5,20 +5,23 @@
 %}
 
 <!-- List of ingredients -->
-<ul>
-  {% for item in items.records.results %}
-    <li>
-      {{ item.name }}
-      <form action="delete" method="post">
-        <input
-          type="hidden"
-          name="id"
-          value="{{ item.id }}">
-        <button type="submit">Mark as done</button>
-      </form>
-    </li>
-  {% endfor %}
-</ul>
+<div id="shopping-container">
+  <ul>
+    {% for item in items.records.results %}
+      <li>
+        {{ item.name }}
+        <form action="delete" method="post">
+          <input
+            type="hidden"
+            name="id"
+            value="{{ item.id }}">
+          <button type="submit">Mark as done</button>
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
 
 <!-- Error when the list is empty -->
 {% if items.records.total_entries == 0 %}
@@ -38,26 +41,26 @@
 </form>
 
 {% comment %} <div id="shopping-container">
-    <ul>
-      <li>
-        Ingredient 1
-        <button type="submit">Mark as done</button>
-      </li>
-      <li>
-        Ingredient 2
-        <button type="submit">Mark as done</button>
-      </li>
-      <li>
-        Ingredient 3
-        <button type="submit">Mark as done</button>
-      </li>
-      <li>
-        Ingredient 4
-        <button type="submit">Mark as done</button>
-      </li>
-      <li>
-        Ingredient 5
-        <button type="submit">Mark as done</button>
-      </li>
-    </ul>
+      <ul>
+        <li>
+          Ingredient 1
+          <button type="submit">Mark as done</button>
+        </li>
+        <li>
+          Ingredient 2
+          <button type="submit">Mark as done</button>
+        </li>
+        <li>
+          Ingredient 3
+          <button type="submit">Mark as done</button>
+        </li>
+        <li>
+          Ingredient 4
+          <button type="submit">Mark as done</button>
+        </li>
+        <li>
+          Ingredient 5
+          <button type="submit">Mark as done</button>
+        </li>
+      </ul>
 </div> {% endcomment %}

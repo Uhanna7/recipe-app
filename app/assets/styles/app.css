@@ -53,6 +53,10 @@ main {
   align-items: center;
   justify-content: center;
   gap: 1.5em;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
 }
 
 /* Shopping-list page */
@@ -70,7 +74,7 @@ main {
   padding: .8em 1em;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   text-align: center;
   gap: 2em;
   background-color: #f5f6fc;
