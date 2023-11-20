@@ -46,16 +46,15 @@
   {% for recipe in recipes.records.results %}
     <div class="recipes-container">
       <div class="recipe-card">
-        <img src={{ recipe.img_url }} alt={{ recipe.name }} class="recipe-image">
+        <img class="recipe-image" src="{{ recipe.img_url }}">
         <div class="recipe-details">
-          <h3>{{ recipe.name }}</h3>
-          <a href="/../index">Show More</a>
+          <h4>{{ recipe.name }}</h4>
+          <a href="/recipes/dish/id={{ recipe.id }}">Show More</a>
         </div>
       </div>
     </div>
   {% endfor %}
 </div>
-
 
 
 <!-- Error when the list is empty -->
