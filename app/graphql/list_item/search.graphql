@@ -17,7 +17,7 @@
 
 query list_item_search {
   records: records(
-    per_page: 100
+		per_page: 100
     filter: { table: { value: "list-item" } }
     sort: { updated_at: { order: DESC } }
   ) {
@@ -25,6 +25,7 @@ query list_item_search {
     results {
       id
       ingredient: property(name: "ingredient")
+      ingredient_id: property(name: "ingredient_id")
     }
   }
 }

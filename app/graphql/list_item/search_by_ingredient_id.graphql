@@ -1,4 +1,4 @@
-query list_itemID($name: String) {
+query list_itemID($id: String) {
   records(
     per_page: 100,
     filter: {
@@ -6,14 +6,10 @@ query list_itemID($name: String) {
         value: "list-item", 
       }
       properties: [
-        { name: "ingredient", value: $name }
+        { name: "ingredient_id", value: $id }
     	]
     }
   ) {
     total_entries
-    results {
-      ingredient: property(name: "ingredient")
-      id
-    }
   }
 }
