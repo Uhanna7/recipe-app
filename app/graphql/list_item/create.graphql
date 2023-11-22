@@ -1,10 +1,9 @@
-mutation list_item_create($ingredient: String, $ingredient_id: String) {
+mutation list_item_create($ingredient_id: String) {
   record: record_create(
     record: {
       table: "list-item"
       properties: [
         { name: "ingredient_id", value: $ingredient_id },
-        { name: "ingredient", value: $ingredient }
       ]
     }
   ) {
