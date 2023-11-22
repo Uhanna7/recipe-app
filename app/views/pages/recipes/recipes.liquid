@@ -1,7 +1,8 @@
 <h2>Recipes</h2>
 
+{% assign searchParam = context.params.search_param %}
 {% liquid
-  graphql recipes = 'food/search'
+  graphql recipes = 'food/search', name: searchParam
 %}
 
 <!-- Search form -->
@@ -9,7 +10,9 @@
   <input
     type="text"
     id="recipe-search"
-    placeholder="Search by recipe name">
+    name="search_param"
+    placeholder="Search by recipe name"
+    value="{{ searchParam }}">
   <button type="submit">Search</button>
 </form>
 
@@ -44,18 +47,19 @@
 <!-- Recipe cards -->
 <div class="flex-recipes-container">
   {% for recipe in recipes.records.results %}
-    <div class="recipes-container">
-      <div class="recipe-card">
-        <img class="recipe-image" src="{{ recipe.img_url }}">
-        <div class="recipe-details">
-          <h4>{{ recipe.name }}</h4>
-          <a href="/recipes/dish/id={{ recipe.id }}">Show More</a>
+    {% if searchParam == blank or recipe.name contains searchParam %}
+      <div class="recipes-container">
+        <div class="recipe-card">
+          <img class="recipe-image" src="{{ recipe.img_url }}">
+          <div class="recipe-details">
+            <h4>{{ recipe.name }}</h4>
+            <a href="/recipes/dish/id={{ recipe.id }}">Show More</a>
+          </div>
         </div>
       </div>
-    </div>
+    {% endif %}
   {% endfor %}
 </div>
-
 
 <!-- Error when the list is empty -->
 {% if recipes.records.total_entries == 0 %}

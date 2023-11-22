@@ -1,0 +1,15 @@
+query list_itemID($id: String) {
+  records(
+    per_page: 100,
+    filter: {
+      table: { 
+        value: "list-item", 
+      }
+      properties: [
+        { name: "ingredient_id", value: $id }
+    	]
+    }
+  ) {
+    total_entries
+  }
+}

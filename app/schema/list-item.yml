@@ -1,0 +1,4 @@
+name: list-item
+properties:
+  - name: ingredient_id
+    type: string
