@@ -1,35 +1,67 @@
 <h2>Recipes</h2>
 
+{% assign searchParam = context.params.search_param %}
+{% liquid
+  graphql recipes = 'food/search', name: searchParam
+%}
+
+<!-- Search form -->
 <form id="form-container">
   <input
     type="text"
     id="recipe-search"
-    placeholder="Search by recipe name">
-  <button onclick="">Search</button>
-{% comment %} <button onclick="">Add Recipe</button> {% endcomment %}
+    name="search_param"
+    placeholder="Search by recipe name"
+    value="{{ searchParam }}">
+  <button type="submit">Search</button>
 </form>
 
+<!-- Add new recipe form -->
+<form
+  action="create"
+  method="post"
+  id="form-container">
+  <input
+    type="text"
+    name="name"
+    id="recipe-search"
+    placeholder="Title">
+  <input
+    type="text"
+    name="image"
+    id="recipe-search"
+    placeholder="Image">
+  <input
+    type="text"
+    name="description"
+    id="recipe-search"
+    placeholder="Description">
+  <input
+    type="text"
+    name="ingredients"
+    id="recipe-search"
+    placeholder="Ingredients: egg, bread ...">
+  <button type="submit">Add Recipe</button>
+</form>
 
-<div id="recipes-container">
-  <div class="recipe-card">
-    <img class="recipe-image">
-    <div class="recipe-details">
-      <h3>Title</h3>
-      <a href="/recipes/dish">Show More</a>
-    </div>
-  </div>
-  <div class="recipe-card">
-    <img class="recipe-image">
-    <div class="recipe-details">
-      <h3>Title</h3>
-      <a href="/recipes/dish">Show More</a>
-    </div>
-  </div>
-  <div class="recipe-card">
-    <img class="recipe-image">
-    <div class="recipe-details">
-      <h3>Title</h3>
-      <a href="/recipes/dish">Show More</a>
-    </div>
-  </div>
+<!-- Recipe cards -->
+<div class="flex-recipes-container">
+  {% for recipe in recipes.records.results %}
+    {% if searchParam == blank or recipe.name contains searchParam %}
+      <div class="recipes-container">
+        <div class="recipe-card">
+          <img class="recipe-image" src="{{ recipe.img_url }}">
+          <div class="recipe-details">
+            <h4>{{ recipe.name }}</h4>
+            <a href="/recipes/dish/id={{ recipe.id }}">Show More</a>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
 </div>
+
+<!-- Error when the list is empty -->
+{% if recipes.records.total_entries == 0 %}
+  <div>There are no items in the list.</div>
+{% endif %}

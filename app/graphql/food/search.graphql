@@ -1,0 +1,15 @@
+query search_food {
+  records: records(
+    per_page: 100, 
+    filter: { table: { value: "food" } }
+  ) {
+    total_entries
+    results {
+      id
+      name: property(name: "name")
+      img_url: property(name: "img_url")
+      recipe: property(name: "recipe")
+      ingredients: property_array(name: "ingredients")
+    }
+  }
+}

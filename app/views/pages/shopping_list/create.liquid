@@ -1,0 +1,32 @@
+---
+method: post
+---
+
+{% liquid
+
+  graphql current_id = 'ingredient/search_by_name', name: context.params.name
+
+  if current_id.records.total_entries == 0
+    graphql result_ingredient = 'ingredient/create', name: context.params.name
+  endif
+
+  graphql id = 'ingredient/search_by_name', name: context.params.name
+  assign ingredient_id = id.records.results[0].id
+
+  graphql res = 'list_item/search_by_ingredient_id', id: ingredient_id
+
+  if res.records.total_entries == 0
+    graphql result = 'list_item/create', ingredient_id: ingredient_id
+    if result.record.id
+      redirect_to 'shopping_list/shopping-list'
+    else
+      echo 'Something went wrong'
+      echo result.errors
+    endif
+  else
+    echo 'You can add an ingredient to the shopping list only once'
+  endif
+
+
+
+%}

@@ -1,0 +1,14 @@
+---
+method: post
+---
+
+{% liquid
+  graphql result = 'list_item/delete', id: context.params.id
+
+  if result.record.id
+    redirect_to 'shopping_list/shopping-list'
+  else
+    echo 'Something went wrong'
+    echo result.errors
+  endif
+%}

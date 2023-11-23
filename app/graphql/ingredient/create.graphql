@@ -1,0 +1,15 @@
+mutation ingredient_create(
+  $name: String
+) {
+  record: record_create(
+    record: {
+      table: "ingredient"
+      properties: [
+        { name: "name", value: $name }
+      ]
+    }
+  ) {
+    id
+    name: property(name: "name")
+  }
+}

@@ -1,0 +1,41 @@
+<h2>Shopping List</h2>
+
+{% liquid
+  graphql items = 'list_item/search'
+%}
+
+<!-- List of ingredients -->
+<div id="shopping-container">
+  <ul>
+    {% for item in items.list_items.results %}
+      <li>
+        {{ item.ingredient.name }}
+        <form action="delete" method="post">
+          <input
+            type="hidden"
+            name="id"
+            value="{{ item.id }}">
+          <button type="submit">Mark as done</button>
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+
+<!-- Error when the list is empty -->
+{% if items.records.total_entries == 0 %}
+  <div>There are no items in the list.</div>
+{% endif %}
+
+<!-- Form for adding new item -->
+<form
+  action="create"
+  method="post"
+  id="form-container">
+  <input
+    type="text"
+    name="name"
+    placeholder="Add ingredients here">
+  <button type="submit">Add item</button>
+</form>
