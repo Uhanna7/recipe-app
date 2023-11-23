@@ -1,8 +1,15 @@
+---
+  slug: recipes/dish/:id
+---
+
 <div class="dish-container">
 
-  {% liquid
+  {% comment %}
     assign template = '/recipes/dish/id={id}'
-    assign params = context.location.pathname | extract_url_params: template
+    assign params = context.location.pathname | extract_url_params: template 
+  {% endcomment %}
+
+  {% liquid
     assign recipeId = params['id']
 
     graphql recipe = 'food/search_by_id', id: recipeId
