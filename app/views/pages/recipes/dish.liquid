@@ -20,14 +20,26 @@
 
     <div class="ingredients-container">
       <ul>
-        {% for ingredient in recipe.records.results[0].ingredients %}
+        {% assign items = recipe.records.results[0].ingredients %}
+        {% for ingredient in items %}
           <li>
             {{ ingredient }}
           </li>
         {% endfor %}
       </ul>
-      <button>Add ingredients to shopping list</button>
+      <form action="add" method="post">
+        <input
+          type="hidden"
+          name="items"
+          value="{{ items }}">
+        <input
+          type="hidden"
+          name="recipeId"
+          value="{{ recipeId }}">
+        <button type="submit">Add ingredients to shopping list</button>
+      </form>
     </div>
+
 
     <h4>Recipe:</h4>
 

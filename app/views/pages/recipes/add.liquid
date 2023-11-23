@@ -1,0 +1,22 @@
+---
+method: post
+---
+
+{% liquid
+
+  assign ingredients = context.params.items
+
+  assign recipeId = context.params.recipeId
+
+  for ingredient in ingredients
+    graphql id = 'ingredient/search_by_name', name: ingredient
+    assign ingredient_id = id.records.results[0].id
+
+    graphql result = 'list_item/create', ingredient_id: ingredient_id
+  endfor
+
+  assign returnUrl = 'recipes/dish/id=' | append: recipeId
+  redirect_to returnUrl
+%}
+
+
