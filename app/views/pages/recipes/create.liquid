@@ -20,7 +20,7 @@ method: post
 {% endfor %}
 
 {% liquid
-  graphql result_food = 'food/create', name: context.params.name, img_url: context.params.image, recipe: context.params.description, ingredients: array
+  graphql result_food = 'food/create', name: context.params.name, img_url: context.params.image, recipe: context.params.description, ingredient_ids: array
 
   if result_food.record.id
     redirect_to 'recipes/recipes'

@@ -9,7 +9,7 @@ query search_food {
       name: property(name: "name")
       img_url: property(name: "img_url")
       recipe: property(name: "recipe")
-      ingredients: property_array(name: "ingredients")
+      ingredient_ids: property_array(name: "ingredient_ids")
     }
   }
 }
