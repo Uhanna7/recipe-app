@@ -1,0 +1,35 @@
+---
+method: post
+---
+
+{% liquid
+
+  assign recipeId = context.params.recipeId
+
+  graphql add_items = 'food/search_by_id', id: recipeId
+  assign add_ids = "[]" | parse_json
+
+  for item in add_items.records.results[0].ingredient_ids
+    assign add_ids = add_ids | array_add: item.id
+  endfor
+
+  graphql prev_items = 'shopping_list/search'
+  assign prev_ids = "[]" | parse_json
+  for item in prev_items.records.results[0].ingredient_ids
+    assign prev_ids = prev_ids | array_add: item.id
+  endfor
+
+  assign array = prev_ids | concat: add_ids
+  assign array = array | uniq
+
+
+  graphql result = 'shopping_list/update', id: "215", ingredient_ids: array
+  assign returnUrl = 'recipes/dish/' | append: recipeId
+
+  if result.record.id
+    redirect_to returnUrl
+  else
+    echo 'Something went wrong'
+    echo result.errors
+  endif
+%}

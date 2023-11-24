@@ -4,7 +4,7 @@
 
 <div class="dish-container">
 
-  {% comment %}
+  {% comment %} 
     assign template = '/recipes/dish/id={id}'
     assign params = context.location.pathname | extract_url_params: template 
   {% endcomment %}
@@ -35,10 +35,6 @@
         {% endfor %}
       </ul>
       <form action="add" method="post">
-        <input
-          type="hidden"
-          name="items"
-          value="{{ items }}">
         <input
           type="hidden"
           name="recipeId"
