@@ -2,7 +2,7 @@ mutation list_item_delete(
   $id: ID!
 ) {
   record: record_delete(
-    table: "list-item"
+    table: "shopping-list"
     id: $id
   ) {
     id

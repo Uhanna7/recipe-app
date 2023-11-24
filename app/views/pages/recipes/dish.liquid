@@ -27,10 +27,10 @@
 
     <div class="ingredients-container">
       <ul>
-        {% assign items = recipe.records.results[0].ingredients %}
+        {% assign items = recipe.records.results[0].ingredient_ids %}
         {% for ingredient in items %}
           <li>
-            {{ ingredient }}
+            {{ ingredient.name }}
           </li>
         {% endfor %}
       </ul>
