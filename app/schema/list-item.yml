@@ -1,4 +1,4 @@
-name: list-item
+name: shopping-list
 properties:
-  - name: ingredient_id
-    type: string
+  - name: ingredient_ids
+    type: array

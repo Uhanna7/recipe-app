@@ -3,20 +3,26 @@ method: post
 ---
 
 {% liquid
+  assign array = "[]" | parse_json
+  graphql prev_shopping_list = 'shopping_list/search'
 
-  graphql current_id = 'ingredient/search_by_name', name: context.params.name
+  for item in prev_shopping_list.shopping_list.results[0].ingredient_ids
+    assign array = array | array_add: item
+  endfor
 
-  if current_id.records.total_entries == 0
+  graphql current_item = 'ingredient/search_by_name', name: context.params.name
+  assign current_id = current_item.records.results[0].id
+
+  if current_item.records.total_entries == 0
     graphql result_ingredient = 'ingredient/create', name: context.params.name
+    assign current_id = result_ingredient.record.id
   endif
 
-  graphql id = 'ingredient/search_by_name', name: context.params.name
-  assign ingredient_id = id.records.results[0].id
+  assign index = array | array_index_of: current_id
 
-  graphql res = 'list_item/search_by_ingredient_id', id: ingredient_id
-
-  if res.records.total_entries == 0
-    graphql result = 'list_item/create', ingredient_id: ingredient_id
+  if index == null
+    assign array = array | array_add: current_id
+    graphql result = 'shopping_list/update', ingredient_ids: array, id: "215"
     if result.record.id
       redirect_to 'shopping_list/shopping-list'
     else
@@ -26,7 +32,4 @@ method: post
   else
     echo 'You can add an ingredient to the shopping list only once'
   endif
-
-
-
 %}

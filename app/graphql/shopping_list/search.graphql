@@ -1,0 +1,14 @@
+query shopping_list {
+  shopping_list: records(
+    filter: {
+      table: { value: "shopping-list" }
+    },
+    per_page: 100
+  ) {
+    total_entries
+    results {
+      id
+      ingredient_ids: property_array(name: "ingredient_ids")
+    }
+  }
+}
