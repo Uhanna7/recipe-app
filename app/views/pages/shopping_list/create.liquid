@@ -6,8 +6,10 @@ method: post
   assign array = "[]" | parse_json
   graphql prev_shopping_list = 'shopping_list/search'
 
-  for item in prev_shopping_list.shopping_list.results[0].ingredient_ids
-    assign array = array | array_add: item
+  assign list_items = prev_shopping_list.records.results[0].ingredient_ids
+
+  for item in list_items
+    assign array = array | array_add: item.id
   endfor
 
   graphql current_item = 'ingredient/search_by_name', name: context.params.name

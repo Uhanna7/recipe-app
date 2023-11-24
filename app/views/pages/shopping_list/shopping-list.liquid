@@ -7,17 +7,14 @@
 <!-- List of ingredients -->
 <div id="shopping-container">
   <ul>
-    {% for id in items.shopping_list.results[0].ingredient_ids %}
-      {% liquid
-        graphql item = 'ingredient/search_by_id', id: id
-      %}
+    {% for item in items.records.results[0].ingredient_ids %}
       <li>
-        {{ item.records.results[0].name }}
+        {{ item.name }}
         <form action="delete" method="post">
           <input
             type="hidden"
             name="id"
-            value="{{ item.records.results[0].id }}">
+            value="{{ item.id }}">
           <button type="submit">Mark as done</button>
         </form>
       </li>
