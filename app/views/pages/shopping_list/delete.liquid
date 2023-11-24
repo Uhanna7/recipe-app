@@ -3,7 +3,14 @@ method: post
 ---
 
 {% liquid
-  graphql result = 'list_item/delete', id: context.params.id
+  graphql list = 'shopping_list/search'
+  assign list_items = list.shopping_list.results[0].ingredient_ids
+
+  assign delete_id = context.params.id
+
+  assign new_list = list_items | array_delete: delete_id
+
+  graphql result = 'shopping_list/update', ingredient_ids: new_list, id: "215"
 
   if result.record.id
     redirect_to 'shopping_list/shopping-list'
