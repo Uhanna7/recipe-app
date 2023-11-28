@@ -1,5 +1,5 @@
 query shopping_list {
-  shopping_list: records(
+  records: records(
     filter: {
       table: { value: "shopping-list" }
     },
@@ -8,7 +8,10 @@ query shopping_list {
     total_entries
     results {
       id
-      ingredient_ids: property_array(name: "ingredient_ids")
+      ingredient_ids: related_records(table: "ingredient", join_on_property: "ingredient_ids", foreign_property: "id") {
+        id
+        name: property(name: "name")
+      }
     }
   }
 }
