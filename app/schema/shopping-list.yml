@@ -1,0 +1,4 @@
+name: shopping-list
+properties:
+  - name: ingredient_ids
+    type: array
