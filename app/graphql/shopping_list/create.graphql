@@ -1,0 +1,18 @@
+mutation shopping_list_create(
+  $ingredient_ids: [String],
+  $user_id: String
+) {
+  record: record_create(
+    record: {
+      table: "shopping-list"
+      properties: [
+        { name: "ingredient_ids", value_array: $ingredient_ids },
+        { name: "user_id", value: $user_id }
+      ]
+    }
+  ) {
+    id
+    ingredient_ids: property_array(name: "ingredient_ids")
+    user_id: property(name: "user_id")
+  }
+}

@@ -2,7 +2,13 @@
 method: post
 ---
 
+{% comment %} 
+  assign shopping_list_id = context.params.shopping_list_id
+{% endcomment %}
+
 {% liquid
+  assign shopping_list_id = "215"
+
   assign array = "[]" | parse_json
   graphql prev_shopping_list = 'shopping_list/search'
 
@@ -24,7 +30,7 @@ method: post
 
   if index == null
     assign array = array | array_add: current_id
-    graphql result = 'shopping_list/update', ingredient_ids: array, id: "215"
+    graphql result = 'shopping_list/update', ingredient_ids: array, id: shopping_list_id
     if result.record.id
       redirect_to 'shopping_list/shopping-list'
     else

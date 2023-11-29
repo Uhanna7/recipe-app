@@ -4,6 +4,12 @@
   graphql items = 'shopping_list/search'
 %}
 
+{% comment %}
+  function current_user = 'modules/user/lib/queries/user/current'
+
+  graphl current_items = 'shopping_list/search_by_user_id', user_id: current_user.id
+{% endcomment %}
+
 <!-- List of ingredients -->
 <div id="shopping-container">
   <ul>
@@ -33,6 +39,12 @@
   action="create"
   method="post"
   id="form-container">
+  {% comment %} 
+    <input
+      type="hidden"
+      name="shopping_list_id"
+      value="{{ current_items.records.results[0].id }}">
+  {% endcomment %}
   <input
     type="text"
     name="name"
