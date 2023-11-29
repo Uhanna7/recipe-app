@@ -1,0 +1,6 @@
+name: profile
+properties:
+  - name: user_id
+  - name: email
+  - name: firstname
+  - name: lastname
