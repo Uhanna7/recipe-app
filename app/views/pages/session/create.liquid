@@ -5,6 +5,7 @@ method: post
 {% liquid
   function res = 'modules/user/lib/commands/session/create', email: context.params.email, password: context.params.password
   if res.valid
+    session_id = res.id
     redirect_to '/shopping_list/shopping-list'
   else
     echo 'Invalid email or password'
