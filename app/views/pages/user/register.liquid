@@ -2,23 +2,31 @@
   function current_user = 'modules/user/lib/queries/user/current'
   function can = 'modules/permission/lib/helpers/can_do', requester: current_user, do: 'sessions.create'
   unless can
-    redirect_to '/'
+    redirect_to 'index'
   endunless
 %}
 
 <div>
   <h1>Sign Up</h1>
-  <form action="user/create" method="post">
+  <form action="create" method="post" class="user-form">
     <input type="hidden" name="authenticity_token" value="{{form_authenticity_token}}">
     <div>
+      <label for="firstname">First Name</label>
+      <input type="text" name="firstname" id="firstname" placeholder="Your first name">
+    </div>
+    <div>
+      <label for="lastname">Last Name</label>
+      <input type="text" name="lastname" id="lastname" placeholder="Your last name">
+    </div>
+    <div>
       <label for="email">Email</label>
-      <input type="email" name="email" id="email">
+      <input type="email" name="email" id="email" placeholder="example@example.com">
     </div>
     <div>
       <label for="password">Password</label>
-      <input type="password" name="password" id="password">
+      <input type="password" name="password" id="password" placeholder="********">
     </div>
     <div>
-      <input type="submit" value="Sign Up">
+      <input type="submit" value="Sign Up" class="button">
     </div>
 </div>

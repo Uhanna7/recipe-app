@@ -56,6 +56,15 @@ main {
   min-height: 100vh;
 }
 
+/* Home page */
+
+.user-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 300px;
+}
+
 /* Shopping-list page */
 
 #shopping-container ul {
@@ -166,6 +175,26 @@ button {
 
 button:hover {
   background-color: #555;
+}
+
+.button {
+  padding: 8px 12px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 
 /* Dish page */

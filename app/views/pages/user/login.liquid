@@ -2,13 +2,16 @@
   function current_user = 'modules/user/lib/queries/user/current'
   function can = 'modules/permission/lib/helpers/can_do', requester: current_user, do: 'sessions.create'
   unless can
-    redirect_to '/'
+    redirect_to 'index'
   endunless
 %}
 
 <div>
   <h1>Sign in</h1>
-  <form action="session/create" method="post">
+  <form
+    action="/session/create"
+    method="post"
+    class="user-form">
     <input
       type="hidden"
       name="authenticity_token"
@@ -18,17 +21,22 @@
       <input
         type="email"
         name="email"
-        id="email">
+        id="email"
+        placeholder="example@example.com">
     </div>
     <div>
       <label for="password">Password</label>
       <input
         type="password"
         name="password"
-        id="password">
+        id="password"
+        placeholder="********">
     </div>
     <div>
-      <input type="submit" value="Sign in">
+      <input
+        type="submit"
+        value="Sign in"
+        class="button">
     </div>
   </form>
 </div>
