@@ -1,0 +1,24 @@
+{% liquid
+  function current_user = 'modules/user/lib/queries/user/current'
+  function can = 'modules/permission/lib/helpers/can_do', requester: current_user, do: 'sessions.create'
+  unless can
+    redirect_to '/'
+  endunless
+%}
+
+<div>
+  <h1>Sign Up</h1>
+  <form action="user/create" method="post">
+    <input type="hidden" name="authenticity_token" value="{{form_authenticity_token}}">
+    <div>
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email">
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password">
+    </div>
+    <div>
+      <input type="submit" value="Sign Up">
+    </div>
+</div>

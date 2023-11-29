@@ -1,0 +1,8 @@
+mutation deleteProfile($id: ID!) {
+  record: record_delete(
+    table: "profile"
+    id: $id
+  ) {
+    id
+  }
+}

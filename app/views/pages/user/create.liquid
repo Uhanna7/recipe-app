@@ -1,0 +1,14 @@
+---
+slug: user/create
+method: post
+---
+
+{% liquid
+  function result = 'modules/user/lib/commands/user/create', email: context.params.email, password: context.params.password
+
+  if result.valid
+    graphql _profile = 'profile/create', user_id: result.id, email: context.params.email, firstname: context.params.firstname, lastname: context.params.lastname
+    function _session = 'modules/user/lib/commands/session/create', user_id: result.id, validate_password: false
+    redirect_to '/'
+  endif
+%}

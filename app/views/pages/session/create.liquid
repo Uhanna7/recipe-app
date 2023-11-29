@@ -1,0 +1,12 @@
+---
+slug: session/create
+method: post
+---
+{% liquid
+  function res = 'modules/user/lib/commands/session/create', email: context.params.email, password: context.params.password
+  if res.valid
+    redirect_to '/'
+  else
+    redirect_to '/user/login'
+  endif
+%}
