@@ -1,0 +1,9 @@
+[submodule "modules/user"]
+	path = modules/user
+	url = https://github.com/Platform-OS/pos-module-user.git
+[submodule "modules/core"]
+	path = modules/core
+	url = https://github.com/Platform-OS/pos-module-core.git
+[submodule "modules/permission"]
+	path = modules/permission
+	url = https://github.com/Platform-OS/pos-module-permission.git
