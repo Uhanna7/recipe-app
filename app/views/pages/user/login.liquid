@@ -2,7 +2,7 @@
   function current_user = 'modules/user/lib/queries/user/current'
   function can = 'modules/permission/lib/helpers/can_do', requester: current_user, do: 'sessions.create'
   unless can
-    redirect_to 'index'
+    redirect_to '/'
   endunless
 %}
 
@@ -15,7 +15,7 @@
     <input
       type="hidden"
       name="authenticity_token"
-      value="{{form_authenticity_token}}">
+      value="{{ context.authenticity_token }}">
     <div>
       <label for="email">Email</label>
       <input
@@ -38,5 +38,13 @@
         value="Sign in"
         class="button">
     </div>
+
+    {% liquid
+      assign input_params = null | parse_json | hash_merge: type: 'email', name: 'email'
+      assign label_params = null | parse_json | hash_merge: content: 'E-mail'
+
+      assign input_params = null | parse_json | hash_merge: type: 'password', name: 'password'
+      assign label_params = null | parse_json | hash_merge: content: 'Password'
+    %}
   </form>
 </div>

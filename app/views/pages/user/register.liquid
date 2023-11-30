@@ -2,31 +2,71 @@
   function current_user = 'modules/user/lib/queries/user/current'
   function can = 'modules/permission/lib/helpers/can_do', requester: current_user, do: 'sessions.create'
   unless can
-    redirect_to 'index'
+    redirect_to '/'
   endunless
 %}
 
 <div>
   <h1>Sign Up</h1>
-  <form action="create" method="post" class="user-form">
-    <input type="hidden" name="authenticity_token" value="{{form_authenticity_token}}">
+  <form
+    action="create"
+    method="post"
+    class="user-form">
+    <input
+      type="hidden"
+      name="authenticity_token"
+      value="{{ context.authenticity_token }}">
     <div>
       <label for="firstname">First Name</label>
-      <input type="text" name="firstname" id="firstname" placeholder="Your first name">
+      <input
+        type="text"
+        name="firstname"
+        id="firstname"
+        placeholder="Your first name">
     </div>
     <div>
       <label for="lastname">Last Name</label>
-      <input type="text" name="lastname" id="lastname" placeholder="Your last name">
+      <input
+        type="text"
+        name="lastname"
+        id="lastname"
+        placeholder="Your last name">
     </div>
     <div>
       <label for="email">Email</label>
-      <input type="email" name="email" id="email" placeholder="example@example.com">
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="example@example.com">
     </div>
     <div>
       <label for="password">Password</label>
-      <input type="password" name="password" id="password" placeholder="********">
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="********">
     </div>
     <div>
-      <input type="submit" value="Sign Up" class="button">
+      <input
+        type="submit"
+        value="Sign Up"
+        class="button">
     </div>
+
+    {% liquid
+      assign input_params = null | parse_json | hash_merge: type: 'text', name: 'firstname'
+      assign label_params = null | parse_json | hash_merge: content: 'Firstname'
+
+      assign input_params = null | parse_json | hash_merge: type: 'text', name: 'lastname'
+      assign label_params = null | parse_json | hash_merge: content: 'Lastname'
+
+      assign input_params = null | parse_json | hash_merge: type: 'email', name: 'email'
+      assign label_params = null | parse_json | hash_merge: content: 'E-mail'
+
+      assign input_params = null | parse_json | hash_merge: type: 'password', name: 'password'
+      assign label_params = null | parse_json | hash_merge: content: 'Password'
+    %}
+  </form>
 </div>

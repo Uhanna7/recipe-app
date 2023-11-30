@@ -9,8 +9,10 @@ method: post
   if result.valid
     graphql _profile = 'profile/create', user_id: result.id, email: context.params.email, firstname: context.params.firstname, lastname: context.params.lastname
     graphql shopping_list = 'shopping_list/create', user_id: result.id
-    redirect_to 'user/login'
+    function _session = 'modules/user/lib/commands/session/create', user_id: result.id, validate_password: false
+    redirect_to '/'
   else
-    echo 'User not created'
+    echo "User not created"
+    echo result.errors
   endif
 %}

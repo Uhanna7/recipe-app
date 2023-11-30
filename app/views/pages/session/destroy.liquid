@@ -4,7 +4,7 @@
   if res.valid
     redirect_to '/'
   else
-    echo 'Session could not be destroyed.'
-    echo res.errors
+    echo 'Session could not be destroyed: '
+    echo res
   endif
 %}

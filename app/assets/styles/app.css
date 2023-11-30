@@ -11,16 +11,19 @@ body {
 header {
   background-color: #333;
   color: #fff;
-  padding: 10px;
   text-align: center;
   position: sticky;
   top: 0;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 nav {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  margin-right: 5rem;
 }
 
 nav a {
@@ -195,6 +198,12 @@ button:hover {
   display: flex;
   justify-content: center;
   gap: 10px;
+}
+
+.button-container:hover {
+  background-color: #555;
+  border-radius: 5px;
+  transform: scale(1.05);
 }
 
 /* Dish page */
