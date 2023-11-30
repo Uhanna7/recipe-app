@@ -1,12 +1,7 @@
 <h1>Welcome to our Recipe App!</h1>
 
-<p>It's a basic recipe application with a Shopping list page where items can be stored in a list by name, along with a Recipes page where all of the dishes are displayed and can be opened in a new page for more information (recipe, ingredients, etc.).</p>
+{% if context.session %}
+  <p>Greetings, {{ context.session.user.name }}!</p>
+{% endif %}
 
-<div class="button-container">
-  {% if context.session %}
-    <a href="session/destroy.liquid" class="button">Logout</a>
-  {% else %}
-    <a href="user/login.liquid" class="button">Login</a>
-    <a href="user/register.liquid" class="button">Sign Up</a>
-  {% endif %}
-</div>
+<p>It's a basic recipe application with a Shopping list page where items can be stored in a list by name, along with a Recipes page where all of the dishes are displayed and can be opened in a new page for more information (recipe, ingredients, etc.).</p>
