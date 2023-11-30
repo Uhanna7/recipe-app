@@ -10,6 +10,7 @@ method: post
     graphql _profile = 'profile/create', user_id: result.id, email: context.params.email, firstname: context.params.firstname, lastname: context.params.lastname
     function _session = 'modules/user/lib/commands/session/create', user_id: result.id, validate_password: false
     graphql shopping_list = 'shopping_list/create', user_id: result.id
+    session_id = _session.id
     redirect_to 'user/login'
   else
     echo 'User not created'
