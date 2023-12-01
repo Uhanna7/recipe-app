@@ -6,7 +6,7 @@
   graphql user = 'user/search_by_user_id', user_id: current_user.id
 %}
 
-{% if context.session %}
+{% if current_user.id %}
   <p>Greetings, {{ user.records.results[0].firstname }} {{ user.records.results[0].lastname }}!</p>
 {% endif %}
 
