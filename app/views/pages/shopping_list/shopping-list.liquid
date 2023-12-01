@@ -15,10 +15,6 @@
         <form action="delete" method="post">
           <input
             type="hidden"
-            name="shopping_list_id"
-            value="{{ current_items.records.results[0].id }}">
-          <input
-            type="hidden"
             name="current_user_id"
             value="{{ current_user.id }}">
           <input
@@ -43,10 +39,6 @@
   action="create"
   method="post"
   id="form-container">
-  <input
-    type="hidden"
-    name="shopping_list_id"
-    value="{{ current_items.records.results[0].id }}">
   <input
     type="hidden"
     name="current_user_id"
