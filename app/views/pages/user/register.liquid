@@ -54,19 +54,5 @@
         value="Sign Up"
         class="button">
     </div>
-
-    {% liquid
-      assign input_params = null | parse_json | hash_merge: type: 'text', name: 'firstname'
-      assign label_params = null | parse_json | hash_merge: content: 'Firstname'
-
-      assign input_params = null | parse_json | hash_merge: type: 'text', name: 'lastname'
-      assign label_params = null | parse_json | hash_merge: content: 'Lastname'
-
-      assign input_params = null | parse_json | hash_merge: type: 'email', name: 'email'
-      assign label_params = null | parse_json | hash_merge: content: 'E-mail'
-
-      assign input_params = null | parse_json | hash_merge: type: 'password', name: 'password'
-      assign label_params = null | parse_json | hash_merge: content: 'Password'
-    %}
   </form>
 </div>
