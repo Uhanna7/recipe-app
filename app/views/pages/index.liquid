@@ -1,7 +1,13 @@
 <h1>Welcome to our Recipe App!</h1>
 
-{% if context.session %}
-  <p>Greetings, {{ context.session.user.name }}!</p>
+{% liquid
+  function current_user = 'modules/user/lib/queries/user/current'
+
+  graphql user = 'user/search_by_user_id', user_id: current_user.id
+%}
+
+{% if current_user.id %}
+  <p>Greetings, {{ user.records.results[0].firstname }} {{ user.records.results[0].lastname }}!</p>
 {% endif %}
 
 <p>It's a basic recipe application with a Shopping list page where items can be stored in a list by name, along with a Recipes page where all of the dishes are displayed and can be opened in a new page for more information (recipe, ingredients, etc.).</p>

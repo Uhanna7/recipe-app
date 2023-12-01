@@ -12,6 +12,9 @@
   </head>
 
   <body>
+    {% liquid
+      function current_user = 'modules/user/lib/queries/user/current'
+    %}
 
     <header>
       <h1>Recipe App</h1>
@@ -21,7 +24,7 @@
         <a href="/recipes/recipes">Recipes</a>
       </nav>
       <div class="button-container">
-        {% if context.session %}
+        {% if current_user.id %}
           <a href="../session/destroy" class="button">Logout</a>
         {% else %}
           <a href="../user/login" class="button">Login</a>

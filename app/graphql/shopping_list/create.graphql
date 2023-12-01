@@ -1,0 +1,17 @@
+mutation shopping_list_create(
+  $user_id: String
+) {
+  record: record_create(
+    record: {
+      table: "shopping-list"
+      properties: [
+        { name: "user_id", value: $user_id }
+      ]
+    }
+  ) {
+    id
+    user_id: related_records(table: "profile", join_on_property: "user_id", foreign_property: "id") {
+      id
+    }
+  }
+}

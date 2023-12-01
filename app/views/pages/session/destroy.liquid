@@ -1,10 +1,5 @@
 {% liquid
   function res = 'modules/user/lib/commands/session/destroy'
 
-  if res.valid
-    redirect_to '/'
-  else
-    echo 'Session could not be destroyed: '
-    echo res
-  endif
+  redirect_to '/'
 %}

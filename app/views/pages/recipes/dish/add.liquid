@@ -3,6 +3,9 @@ method: post
 ---
 
 {% liquid
+  assign user_id = context.params.current_user_id
+  graphql current_items = 'shopping_list/search_by_user_id', user_id: user_id
+  assign shopping_list_id = current_items.records.results[0].id
 
   assign recipeId = context.params.recipeId
 
@@ -13,7 +16,7 @@ method: post
     assign add_ids = add_ids | array_add: item.id
   endfor
 
-  graphql prev_items = 'shopping_list/search'
+  graphql prev_items = 'shopping_list/search_by_user_id', user_id: user_id
   assign prev_ids = "[]" | parse_json
   for item in prev_items.records.results[0].ingredient_ids
     assign prev_ids = prev_ids | array_add: item.id
@@ -23,7 +26,7 @@ method: post
   assign array = array | uniq
 
 
-  graphql result = 'shopping_list/update', id: "215", ingredient_ids: array
+  graphql result = 'shopping_list/update', id: shopping_list_id, ingredient_ids: array
   assign returnUrl = 'recipes/dish/' | append: recipeId
 
   if result.record.id

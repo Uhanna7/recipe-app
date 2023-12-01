@@ -1,0 +1,17 @@
+query search_shopping_list ($user_id: String!) {
+  records: records(
+    per_page: 1, 
+    filter: {table: {value: "shopping-list"}, properties: [{name: "user_id", value: $user_id}] }
+  ) {
+    total_entries
+    results {
+      id
+      user_id: property(name: "user_id")
+      ingredient_ids: 
+      	related_records(table: "ingredient", join_on_property: "ingredient_ids", foreign_property: "id") {
+        id
+        name: property(name: "name")
+      }
+    }
+  }
+}
