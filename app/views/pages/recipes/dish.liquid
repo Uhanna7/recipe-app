@@ -4,15 +4,12 @@
 
 <div class="dish-container">
 
-  {% comment %} 
-    assign template = '/recipes/dish/id={id}'
-    assign params = context.location.pathname | extract_url_params: template 
-  {% endcomment %}
-
   {% liquid
     assign recipeId = params['id']
 
     graphql recipe = 'food/search_by_id', id: recipeId
+
+    function current_user = 'modules/user/lib/queries/user/current'
   %}
 
   <h2>{{ recipe.records.results[0].name }}</h2>
@@ -39,6 +36,10 @@
           type="hidden"
           name="recipeId"
           value="{{ recipeId }}">
+        <input
+          type="hidden"
+          name="current_user_id"
+          value="{{ current_user.id }}">
         <button type="submit">Add ingredients to shopping list</button>
       </form>
     </div>

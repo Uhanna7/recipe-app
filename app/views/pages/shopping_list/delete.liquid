@@ -4,8 +4,9 @@ method: post
 
 {% liquid
   assign shopping_list_id = context.params.shopping_list_id
+  assign user_id = context.params.current_user_id
 
-  graphql list = 'shopping_list/search_by_user_id', user_id: context.params.current_user.id
+  graphql list = 'shopping_list/search_by_user_id', user_id: user_id
   assign list_items = list.records.results[0].ingredient_ids
   assign ids = "[]" | parse_json
 
