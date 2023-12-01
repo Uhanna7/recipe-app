@@ -1,0 +1,17 @@
+query searchProfile {
+  records(
+    per_page: 100
+    filter: {
+      table: { value: "profile" }
+    }
+  ) {
+    total_entries
+    results {
+      id
+      user_id: property(name: "user_id")
+      email: property(name: "email")
+      firstname: property(name: "firstname")
+      lastname: property(name: "lastname")
+    }
+  }
+}

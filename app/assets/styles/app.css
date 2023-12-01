@@ -11,16 +11,19 @@ body {
 header {
   background-color: #333;
   color: #fff;
-  padding: 10px;
   text-align: center;
   position: sticky;
   top: 0;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 nav {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  margin-right: 5rem;
 }
 
 nav a {
@@ -54,6 +57,15 @@ main {
   margin-top: 60px;
   gap: 1.5em;
   min-height: 100vh;
+}
+
+/* Home page */
+
+.user-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 300px;
 }
 
 /* Shopping-list page */
@@ -166,6 +178,32 @@ button {
 
 button:hover {
   background-color: #555;
+}
+
+.button {
+  padding: 8px 12px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.button-container:hover {
+  background-color: #555;
+  border-radius: 5px;
+  transform: scale(1.05);
 }
 
 /* Dish page */

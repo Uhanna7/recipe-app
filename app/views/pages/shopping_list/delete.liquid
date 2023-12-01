@@ -3,7 +3,10 @@ method: post
 ---
 
 {% liquid
-  graphql list = 'shopping_list/search'
+  assign shopping_list_id = context.params.shopping_list_id
+  assign user_id = context.params.current_user_id
+
+  graphql list = 'shopping_list/search_by_user_id', user_id: user_id
   assign list_items = list.records.results[0].ingredient_ids
   assign ids = "[]" | parse_json
 
@@ -15,7 +18,7 @@ method: post
 
   assign new_id_list = ids | array_delete: delete_id
 
-  graphql result = 'shopping_list/update', ingredient_ids: new_id_list, id: "215"
+  graphql result = 'shopping_list/update', ingredient_ids: new_id_list, id: shopping_list_id
 
   if result.record.id
     redirect_to 'shopping_list/shopping-list'

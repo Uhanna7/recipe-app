@@ -1,0 +1,14 @@
+query search_user ($user_id: String!) {
+  records: records(
+    per_page: 1, 
+    filter: {table: {value: "profile"}, properties: [{name: "user_id", value: $user_id}] }
+  ) {
+    total_entries
+    results {
+      id
+      user_id: property(name: "user_id")
+      firstname: property(name: "firstname")
+      lastname: property(name: "lastname")
+    }
+  }
+}

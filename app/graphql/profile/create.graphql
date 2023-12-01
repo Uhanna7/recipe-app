@@ -1,0 +1,20 @@
+mutation createProfile(
+  $user_id: String!
+  $email: String!
+  $firstname: String!
+  $lastname: String!
+) {
+  record: record_create(
+    record: {
+      table: "profile",
+      properties: [
+        { name: "user_id", value: $user_id }
+        { name: "email", value: $email }
+        { name: "firstname", value: $firstname }
+        { name: "lastname", value: $lastname }
+      ]
+    }
+  ) {
+    id
+  }
+}
