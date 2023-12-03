@@ -10,8 +10,7 @@ mutation shopping_list_create(
     }
   ) {
     id
-    user_id: related_records(table: "profile", join_on_property: "user_id", foreign_property: "id") {
-      id
-    }
+    ingredient_ids: property_array(name: "ingredient_ids")
+    user_id: property(name: "user_id")
   }
 }
