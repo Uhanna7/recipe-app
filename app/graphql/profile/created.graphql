@@ -1,0 +1,11 @@
+mutation profile_item_created(
+  $data: HashObject!
+) {
+  email_send(
+    template: { name: "registered" }
+    data: $data
+  ) {
+    is_scheduled_to_send
+    errors { message }
+  }
+}
