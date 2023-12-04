@@ -1,0 +1,33 @@
+{% liquid
+    function object = 'app/lib/commands/shopping-list/delete/check', object: object
+
+  if object.valid
+    assign user_id = object.current_user_id
+
+    graphql list = 'shopping_list/search_by_user_id', user_id: user_id
+    assign shopping_list_id = list.records.results[0].id
+    assign list_items = list.records.results[0].ingredient_ids
+    assign ids = "[]" | parse_json
+
+    for item in list_items
+        assign ids = ids | array_add: item.id
+    endfor
+
+    assign delete_id = object.id
+
+    assign new_id_list = ids | array_delete: delete_id
+
+    graphql result = 'shopping_list/update', ingredient_ids: new_id_list, id: shopping_list_id
+
+    if result.record.id
+        redirect_to 'shopping_list/shopping-list'
+    else
+        echo 'Something went wrong'
+        echo result.errors
+    endif
+
+    hash_assign object['valid'] = true
+  endif
+
+  return object
+%}

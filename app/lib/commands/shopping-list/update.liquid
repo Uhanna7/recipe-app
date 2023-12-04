@@ -3,7 +3,7 @@
   function object = 'app/lib/commands/shopping-list/update/check', object: object
 
   if object.valid
-    assign user_id = object.id
+    assign user_id = object.current_user_id
     assign array = "[]" | parse_json
     graphql prev_shopping_list = 'shopping_list/search_by_user_id', user_id: user_id
 

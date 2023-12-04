@@ -3,7 +3,7 @@
   function object = 'app/lib/commands/shopping-list/create/check', object: object
 
   if object.valid
-    graphql object = 'shopping_list/create', args: object
+    graphql object = 'shopping_list/create', args: object.id
     hash_assign object['valid'] = true
   endif
 

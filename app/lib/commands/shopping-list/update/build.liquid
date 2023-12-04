@@ -1,6 +1,6 @@
 {% parse_json object %}
   {
-    "id": {{ object.current_user_id | json }},
+    "current_user_id": {{ object.current_user_id | json }},
     "name": {{ object.name | json }},
   }
 {% endparse_json %}
