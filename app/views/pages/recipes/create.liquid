@@ -2,30 +2,10 @@
 method: post
 ---
 
-{% assign names = context.params.ingredients | split: ", " %}
-{% assign array = "[]" | parse_json %}
-
-{% for item in names %}
-  {% liquid
-    graphql current_item = 'ingredient/search_by_name', name: item
-    assign current_id = current_item.records.results[0].id
-
-    if current_item.records.total_entries == 0
-      graphql result_ingredient = 'ingredient/create', name: item
-      assign current_id = result_ingredient.record.id
-    endif
-
-    assign array = array | array_add: current_id
-  %}
-{% endfor %}
-
 {% liquid
-  graphql result_food = 'food/create', name: context.params.name, img_url: context.params.image, recipe: context.params.description, ingredient_ids: array
+  function object = 'lib/commands/recipes/create', object: context.params
 
-  if result_food.record.id
-    redirect_to 'recipes/recipes'
-  else
-    echo 'Something went wrong'
-    echo result.errors
+  if object.valid
+    redirect_to '/recipes/recipes'
   endif
 %}
