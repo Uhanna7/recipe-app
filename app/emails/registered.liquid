@@ -1,5 +1,5 @@
 ---
-to: '{{ form.recipient }}'
+to: '{{ data.recipient }}'
 delay: 0
 enabled: true
 trigger_condition: true
@@ -7,10 +7,10 @@ from: no-reply@example.com
 reply_to: no-reply@example.com
 cc:
 bcc:
-subject: 'Welcome {{ form.first_name }} in our Recipe App!'
+subject: 'Welcome {{ data.first_name }} in our Recipe App!'
 layout_path: mailer
 ---
 
-<h1>Hi {{ form.first_name }}!</h1>
+<h1>Hi {{ data.first_name }}!</h1>
 
-<p>Welcome in our marketplace!</p>
+<p>Welcome in our Recipe App!</p>
