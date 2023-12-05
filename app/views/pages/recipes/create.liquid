@@ -3,9 +3,11 @@ method: post
 ---
 
 {% liquid
-  function object = 'app/lib/commands/recipes/create', object: context.params
+  function object = 'commands/recipes/create', object: context.params
 
   if object.valid
     redirect_to 'recipes/recipes'
+  else
+    echo object
   endif
 %}
