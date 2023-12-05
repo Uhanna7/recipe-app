@@ -1,0 +1,10 @@
+{% liquid
+  function object = 'lib/commands/recipes/delete/check', object: object
+
+  if object.valid
+    graphql object = 'food/delete', args: object
+    hash_assign object['valid'] = true
+  endif
+
+  return object
+%}

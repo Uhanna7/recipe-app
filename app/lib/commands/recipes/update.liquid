@@ -3,7 +3,7 @@
   function object = 'lib/commands/recipes/update/check', object: object
 
   if object.valid
-    graphql object = 'lib/commands/recipes/update', args: object
+    graphql object = 'food/update', args: object
     hash_assign object['valid'] = true
   endif
 
