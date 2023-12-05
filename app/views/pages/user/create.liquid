@@ -9,7 +9,7 @@ method: post
   if result.valid
     graphql _profile = 'profile/create', user_id: result.id, email: context.params.email, firstname: context.params.firstname, lastname: context.params.lastname
 
-    function object = 'app/lib/commands/shopping-list/create', object: result
+    function object = 'commands/shopping-list/create', object: result
 
     function _session = 'modules/user/lib/commands/session/create', user_id: result.id, validate_password: false
     redirect_to '/'
@@ -18,5 +18,3 @@ method: post
     echo result
   endif
 %}
-
-{% comment %} graphql shopping_list = 'shopping_list/create', user_id: result.id {% endcomment %}

@@ -3,9 +3,9 @@ method: post
 ---
 
 {% liquid
-  function object = 'app/lib/commands/shopping-list/delete', object: context.params
+  function object = 'commands/shopping-list/delete', object: context.params
 
-  if object
-    redirect_to '/shopping-list/shopping-list'
+  if object.valid
+    redirect_to 'shopping_list/shopping-list'
   endif
 %}

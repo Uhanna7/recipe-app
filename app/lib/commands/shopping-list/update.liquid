@@ -1,6 +1,9 @@
 {% liquid
   function object = 'app/lib/commands/shopping-list/update/build', object: object
-  function object = 'app/lib/commands/shopping-list/update/check', object: object
+  # function object = 'app/lib/commands/shopping-list/update/check', object: object
+
+  # ideiglenes
+  hash_assign object['valid'] = true
 
   if object.valid
     assign user_id = object.current_user_id
@@ -27,13 +30,6 @@
     if index == null
         assign array = array | array_add: current_id        
         graphql object = 'shopping_list/update', ingredient_ids: array, id: shopping_list_id
-
-        if object.record.id
-            redirect_to 'shopping_list/shopping-list'
-        else
-            echo 'Something went wrong'
-            echo result.errors
-        endif
     else
         echo 'You can add an ingredient to the shopping list only once'
     endif
