@@ -1,10 +1,9 @@
 {% liquid
-  function object = 'app/lib/commands/recipes/create/build', object: object
-  function object = 'app/lib/commands/recipes/create/check', object: object
+  function object = 'commands/recipes/create/build', object: object
+  function object = 'commands/recipes/create/check', object: object
 
   if object.valid
-    graphql object = 'food/create', args: object
-    hash_assign object['valid'] = true
+    function object = 'modules/core/commands/execute', mutation_name: 'create' object: object
   endif
 
   return object

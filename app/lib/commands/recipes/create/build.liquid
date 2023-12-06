@@ -8,5 +8,6 @@
 {% endparse_json %}
 
 {% liquid
-  return object
+  assign data = null | hash_merge: name: object.name, img_url: object.img_url, recipe: object.recipe, ingredient_ids: object.ingredient_ids
+  return data
 %}
