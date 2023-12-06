@@ -1,0 +1,12 @@
+{% parse_json object %}
+  {
+    "name": {{ object.name | json }},
+    "img_url": {{ object.img_url | json }},
+    "recipe": {{ object.recipe | json }},
+    "ingredient_ids": {{ object.ingredient_ids | json }}
+  }
+{% endparse_json %}
+
+{% liquid
+  return object
+%}
